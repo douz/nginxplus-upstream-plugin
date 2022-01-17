@@ -22,6 +22,14 @@ if [ -n $RD_CONFIG_BACKUP_API_URL ] ; then
     USE_BACKUP_URL=true
 fi
 
+#Force HTTPS
+if [ "${RD_CONFIG_API_URL:0:7}" = "http://" ] ; then
+     RD_CONFIG_API_URL="https://${RD_CONFIG_API_URL:7}"
+fi
+if [ "${RD_CONFIG_BACKUP_API_URL:0:7}" = "http://" ] ; then
+     RD_CONFIG_BACKUP_API_URL="https://${RD_CONFIG_BACKUP_API_URL:7}"
+fi
+
 #Usage get_curl API_URL
 get_curl () {
     METHOD="-X GET"
